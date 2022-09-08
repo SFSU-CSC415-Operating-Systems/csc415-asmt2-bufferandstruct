@@ -7,7 +7,11 @@
 *
 * File: Kim_Mark_HW2_main.c
 *
-* Description:
+* Description: This project populates a struct (personalInfo) provided by 
+* assignment2.h.  In addition, this program retrieves a set of strings
+* from assignment2.h and copies them to a buffer by sequentially filling
+* it in its entirety before committing and clearing the buffer for
+* subsequent copies.
 *
 **************************************************************/
 #include <stdio.h>
@@ -15,7 +19,7 @@
 #include <string.h>
 #include "assignment2.h"
 
-void fillBuffer() {
+void bufferAndCommit() {
     // The string retrieved from getNext() must be stored so that it can be
     // used to fill the string buffer.  Since there is no function to navigate
     // the data structure providing the strings, it is best to process each
@@ -45,11 +49,11 @@ void fillBuffer() {
             // we want to ensure that only the portion of the C string that will
             // precisely fill the buffer will be copied.
             strncat(strBuffer, cStr, bufferRemaining);
-            commitBlock(strBuffer);
 
             // This is where we move the pointer to the character that starts the
             // next sequence of characters for copying into the buffer.
             cStr = cStr + bufferRemaining;
+            commitBlock(strBuffer);
 
             // Since the buffer has been cleared by commitBlock(), a strcpy() is
             // sufficient.
@@ -100,7 +104,7 @@ int main ( int argc, char *argv[] ) {
     writePersonalInfo(me);
 
     // STEP SIX:
-    fillBuffer();
+    bufferAndCommit();
 
     // STEP SEVEN:
     checkIt();
