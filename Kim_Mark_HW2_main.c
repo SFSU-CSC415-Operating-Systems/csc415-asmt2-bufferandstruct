@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assignment2.h>
+#include "assignment2.h"
 
 int main ( int argc, char *argv[] ) {
 
@@ -36,7 +36,7 @@ int main ( int argc, char *argv[] ) {
     // a terminating null character is inserted at the end of message since
     // C strings are always terminated by a null character.
     strncpy(mePtr->message, argv[3], sizeof(mePtr->message));
-    mePtr->message[100] = '\0';
+    mePtr->message[99] = '\0';
 
     // Step five:
     writePersonalInfo(mePtr);
@@ -44,7 +44,7 @@ int main ( int argc, char *argv[] ) {
     // Step six:
     char *strBuffer = malloc(BLOCK_SIZE);
 
-    char *cStr = getNext();
+    const char *cStr = getNext();
 
     while (cStr != NULL) {
         int bufRem = BLOCK_SIZE - strlen(strBuffer);
